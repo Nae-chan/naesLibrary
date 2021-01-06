@@ -1,0 +1,52 @@
+GET http://localhost:8080/
+###
+GET http://localhost:8080/5fe2fe33e9dda87991e18dc4
+
+###
+
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{
+	"user": "Nae"
+}
+
+###
+
+PATCH http://localhost:8080/users/checkout
+Content-Type: application/json
+
+{
+	"isbn": "1122",
+	"user": "Jo"
+}
+###
+PATCH http://localhost:8080/users/5fe71370439db59b7ef8b98a
+
+
+###
+
+GET http://localhost:8080/admin
+###
+POST http://localhost:8080/admin/add-copy
+Content-Type: application/json
+
+{
+	"isbn": "1122"
+}
+###
+POST http://localhost:8080/admin/new-book
+Content-Type: application/json
+
+{
+	"_id": "",
+	"isbn": "2210",
+	"title": "One",
+	"author": "Edward Morgan"
+}
+###
+DELETE http://localhost:8080/admin/5fe2fe27e9dda87991e18dc3
+
+###
+
