@@ -21,13 +21,13 @@ This is an app to manage a library's book inventory.
 
 ## How to run the app locally 
 * Start the server
-  - npm install
+  - npm install in backend directory
   - Create a .env file in the backend and follow the envtemplate to populate it
   - npm start
   
  ***You will need permissions to access the database
 * Start the ui
-  - npm install
+  - npm install in ui directory
   - Create 'ui/src/enviroment.ts' and follow the environmentTemplate to populate it
   - npm start
   
