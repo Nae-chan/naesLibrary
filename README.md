@@ -2,6 +2,9 @@
 
 This is an app to manage a library's book inventory.
 
+## Demo:
+https://youtu.be/AAxAalHtxcs
+
 ## Features
 ### For Admin/Librarian:
 * Add a book to the library.
