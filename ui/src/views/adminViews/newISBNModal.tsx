@@ -36,11 +36,11 @@ const NewISBNModal: React.FC<ModalProps> = ({
   };
 
   return (
-    <Modal show={show} centered onHide={toggleModal} animation={false}>
+    <Modal data-testid="isbn-modal" show={show} centered onHide={toggleModal} animation={false}>
       <Modal.Header closeButton>
         <Modal.Title>Add a New Book</Modal.Title>
       </Modal.Header>
-      <Form onSubmit={handleSubmit}>
+      <Form data-testid="isbn-form" onSubmit={(e)=>handleSubmit(e)}>
         <Modal.Body>
           <p> Please provide information about the new book.</p>
           <Form.Group as={Row} controlId="isbn">
@@ -67,7 +67,7 @@ const NewISBNModal: React.FC<ModalProps> = ({
                 name="title"
                 required
                 type="text"
-                placeholder="title"
+                placeholder="Title"
                 onChange={handleInputChange}
               />
             </Col>
@@ -82,7 +82,7 @@ const NewISBNModal: React.FC<ModalProps> = ({
                 name="author"
                 required
                 type="text"
-                placeholder="author"
+                placeholder="Author"
                 onChange={handleInputChange}
               />
             </Col>
@@ -90,7 +90,7 @@ const NewISBNModal: React.FC<ModalProps> = ({
         </Modal.Body>
         <Modal.Footer>
           <Button variant="outline-secondary" type="submit">
-            Ok
+            Submit
           </Button>
         </Modal.Footer>
       </Form>

@@ -20,8 +20,8 @@ userRoutes.get("", async (req: express.Request, resp: express.Response) => {
 
     // remove duplicate books
     const uniqueIsbnBooks: Book[] = allBooks.filter(
-      (book, index, bookArr) =>
-        index === bookArr.findIndex((b) => b.isbn === book.isbn)
+      (book:Book, index, bookArr) =>
+        index === bookArr.findIndex((b:Book) => b.isbn === book.isbn)
     );
 
     resp.json(uniqueIsbnBooks);

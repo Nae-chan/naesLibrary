@@ -2,6 +2,9 @@ import { app } from "../app";
 import supertest from "supertest";
 import dbSetUp from "../testSetup";
 import { BookModel } from "../schema";
+import { Book } from "../../../models/book";
+
+const userEndpoint = "/users"
 
 describe("user Routes", () => {
   // set up db for test
@@ -11,11 +14,12 @@ describe("user Routes", () => {
     let resp: any;
     try {
       resp = await supertest(app)
-        .post("/borrowed-books")
+        .post(userEndpoint)
         .send({ user: "Mary Doe" });
     } catch (error) {
       console.error("Error: ", error);
     }
+    console.log("resp ", resp)
     const differentUser = resp.body.filter(
       (book) => book.rentedBy !== "Mary Doe"
     ).length;
@@ -28,7 +32,7 @@ describe("user Routes", () => {
     let resp: any;
     try {
       resp = await supertest(app)
-        .patch("/borrowed-books/checkout")
+        .patch(userEndpoint + "/checkout")
         .send({ isbn: "456", user: "bob" });
     } catch (error) {
       console.error("Error: ", error);
@@ -49,7 +53,7 @@ describe("user Routes", () => {
         rentedBy: "Mary Doe",
       });
       resp = await supertest(app).patch(
-        `/borrowed-books/${bookToReturn[0]._id}`
+        `${userEndpoint}/${bookToReturn[0]._id}`
       );
     } catch (error) {
       console.error("Error: ", error);
@@ -58,5 +62,20 @@ describe("user Routes", () => {
     expect(resp.body.isbn).toBe("456");
     expect(resp.body.dueDate).toBeUndefined();
     expect(resp.body.rentedBy).toBeUndefined();
+  });
+
+  it("gets all books by unique isbn", async () => {
+    let resp: any;
+    try {
+      resp = await supertest(app).get(userEndpoint);
+    } catch (error) {
+      console.error("Error: ", error);
+    }
+    const numberOfRepeats = resp.body.filter((book:Book) => book.isbn === "123")
+      .length;
+
+    expect(resp.status).toEqual(200);
+    expect(resp.body[0]._id).toBeDefined();
+    expect(numberOfRepeats).toBe(1);
   });
 });

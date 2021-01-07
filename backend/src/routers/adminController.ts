@@ -2,7 +2,7 @@ import express from "express";
 import { BookModel } from "../schema";
 import { getBookByID } from "../middleware/getBookById.middleware";
 import dayjs from "dayjs";
-import { NewBookInput } from "../../../models/book";
+import { Book, NewBookInput } from "../../../models/book";
 
 const adminRoutes = express.Router();
 
@@ -30,7 +30,7 @@ adminRoutes.get(
         dueDate: { $exists: true },
         rentedBy: { $exists: true },
       });
-      const overdueBooks = [];
+      const overdueBooks:Book[] = [];
       // Add books with past due dates to the overdueBooks array
       for (let i = 0; i < checkedOutBooks.length; i++) {
         const currentDate = new Date();
